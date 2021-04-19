@@ -1,48 +1,54 @@
-<script>
-  import { onMount } from "svelte";
-  export let date;
+<style lang="postcss">
+  label {
+    @apply block mb-2 text-sm font-bold text-gray-700;
+  }
+  .input-field {
+    @apply border w-full py-2 px-3 text-gray-700 mb-3;
+  }
+  .input-field:focus {
+    @apply shadow-outline outline-none;
+  }
+  button {
+    @apply w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-sm;
+  }
+  button:hover {
+    @apply bg-blue-700;
+  }
+  button:focus {
+    @apply outline-none shadow-outline;
+  }
+  .wrapper {
+    @apply flex flex-grow h-screen justify-center items-center bg-blue-100;
+  }
+</style>
 
-  onMount(async () => {
-    const res = await fetch("/api/date");
-    const newDate = await res.text();
-    date = newDate;
-  });
-</script>
-
-<main>
-  <h1>Svelte + Node.js API</h1>
-  <h2>
-    Deployed with
-    <a href="https://vercel.com/docs" target="_blank" rel="noreferrer noopener">
-      Vercel
-    </a>
-    !
-  </h2>
-  <p>
-    <a
-      href="https://github.com/vercel/vercel/tree/master/examples/svelte"
-      target="_blank"
-      rel="noreferrer noopener">
-      This project
-    </a>
-    is a
-    <a href="https://svelte.dev/">Svelte</a>
-    app with three directories,
-    <code>/public</code>
-    for static assets,
-    <code>/src</code>
-    for components and content, and
-    <code>/api</code>
-    which contains a serverless
-    <a href="https://nodejs.org/en/">Node.js</a>
-    function. See
-    <a href="/api/date">
-      <code>api/date</code>
-      for the Date API with Node.js
-    </a>
-    .
-  </p>
-  <br />
-  <h2>The date according to Node.js is:</h2>
-  <p>{date ? date : 'Loading date...'}</p>
-</main>
+<div class="wrapper">
+  <div class="w-full max-w-xs">
+    <form class="px-8 pt-6 pb-8 bg-white shadow-md">
+      <div class="mb-4">
+        <label for="email">Email</label>
+        <input
+          class="input-field"
+          id="email"
+          type="text"
+          placeholder="name@acme.com"
+        />
+      </div>
+      <div class="mb-6">
+        <label for="password">Password</label>
+        <input
+          class="input-field"
+          id="password"
+          type="password"
+          placeholder="******************"
+        />
+      </div>
+      <div class="">
+        <button type="submit">Sign In</button>
+      </div>
+      <div class="mt-3">
+        <button type="button">Sign In with Google</button>
+      </div>
+    </form>
+  </div>
+</div>
