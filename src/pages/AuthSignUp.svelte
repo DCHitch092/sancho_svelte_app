@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
 import { Auth } from 'aws-amplify';
 
 let username;
@@ -30,4 +30,4 @@ async function signUp() {
 <input bind:value='{attributes.first_name}' />
 <input bind:value='{attributes.surname}' />
 
-  <button on:click='{() => signUp()}' >Sign Up</button>
+  <button on:click='{() => signUp()}' >Sign Up</button> -->
