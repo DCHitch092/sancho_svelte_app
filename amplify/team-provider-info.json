@@ -10,6 +10,11 @@
       "StackName": "amplify-sanchosvelteapp-dev-193545",
       "StackId": "arn:aws:cloudformation:eu-west-2:225872045437:stack/amplify-sanchosvelteapp-dev-193545/8b1c1c70-b1be-11eb-b727-0a7effc730aa",
       "AmplifyAppId": "dvzz5q1aguwv0"
+    },
+    "categories": {
+      "auth": {
+        "sanchosvelteapp3527c53e": {}
+      }
     }
   }
 }

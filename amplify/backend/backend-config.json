@@ -1,1 +1,10 @@
-{}
+{
+  "auth": {
+    "sanchosvelteapp3527c53e": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
+    }
+  }
+}
