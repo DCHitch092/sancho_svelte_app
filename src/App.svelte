@@ -1,5 +1,9 @@
 
 <script>
+import Amplify, { Auth } from 'aws-amplify';
+import awsconfig from './aws-exports';
+Amplify.configure(awsconfig);
+
 import { Router, Link, Route, useNavigate, navigate } from "svelte-navigator";
 import Home from './pages/Home.svelte';
 import About from './pages/About.svelte';
@@ -59,6 +63,7 @@ function login() {
 
 <Router>
 	<h1>Hello {name}!</h1>
+	<AuthSignIn />
 	<!-- <input bind:value='{name}' />
 		<button on:click='{() => onSubmit()}' >Log in</button>
 		<p>Not a user? <Link to="/sign-up">Sign up</Link></p> -->
