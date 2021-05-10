@@ -1,54 +1,73 @@
-<style lang="postcss">
-  label {
-    @apply block mb-2 text-sm font-bold text-gray-700;
-  }
-  .input-field {
-    @apply border w-full py-2 px-3 text-gray-700 mb-3;
-  }
-  .input-field:focus {
-    @apply shadow-outline outline-none;
-  }
-  button {
-    @apply w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-sm;
-  }
-  button:hover {
-    @apply bg-blue-700;
-  }
-  button:focus {
-    @apply outline-none shadow-outline;
-  }
-  .wrapper {
-    @apply flex flex-grow h-screen justify-center items-center bg-blue-100;
-  }
-</style>
 
-<div class="wrapper">
-  <div class="w-full max-w-xs">
-    <form class="px-8 pt-6 pb-8 bg-white shadow-md">
-      <div class="mb-4">
-        <label for="email">Email</label>
-        <input
-          class="input-field"
-          id="email"
-          type="text"
-          placeholder="name@acme.com"
-        />
-      </div>
-      <div class="mb-6">
-        <label for="password">Password</label>
-        <input
-          class="input-field"
-          id="password"
-          type="password"
-          placeholder="******************"
-        />
-      </div>
-      <div class="">
-        <button type="submit">Sign In</button>
-      </div>
-      <div class="mt-3">
-        <button type="button">Sign In with Google</button>
-      </div>
-    </form>
-  </div>
-</div>
+<script>
+import { Router, Link, Route, useNavigate, navigate } from "svelte-navigator";
+import Home from './pages/Home.svelte';
+import About from './pages/About.svelte';
+import LoggedIn from './pages/LoggedIn.svelte';
+import PieceDisplay from'./pages/PieceDisplay.svelte';
+import AuthSignUp from './pages/AuthSignUp.svelte';
+
+let name = 'user';
+$: loggedIn = (name === "marianne")
+
+let userLoggedIn = false;
+
+function changeName(input){
+	name = input;
+}
+
+function login() {
+	// does nothing
+}
+
+	function onSubmit() {
+		// login().then(() => {
+			navigate(`/account/`, { replace: true });
+		// });
+	}
+// const navigate = useNavigate();import { Auth } from 'aws-amplify';
+
+async function signUp() {
+    try {
+        const { user } = await Auth.signUp({
+            username,
+            password,
+            attributes: {
+                email,          // optional
+                phone_number,   // optional - E.164 number convention
+                // other custom attributes
+            }
+        });
+        console.log(user);
+    } catch (error) {
+        console.log('error signing up:', error);
+    }
+}
+
+
+</script>
+<Router primary={false}>
+	<header>
+		<nav>
+				<Link to="/">Home</Link>
+				<Link to="/about">About</Link>
+				<Link to='/account'>Account</Link>
+		</nav>
+	</header>
+</Router>
+
+<Router>
+	<h1>Hello {name}!</h1>
+	<input bind:value='{name}' />
+		<button on:click='{() => onSubmit()}' >Log in</button>
+		<p>Not a user? <Link to="/sign-up">Sign up</Link></p>
+
+	<section>
+		<Route path="/"><Home /></Route>
+		<Route path="/sign-up"><AuthSignUp /></Route>
+		<Route path="/about"><About /></Route>
+		<Route path="/account" ><LoggedIn userID={name} /></Route>
+		<Route path="/account/:userID/piece/:pieceID" let:params ><PieceDisplay /></Route>
+	</section>
+
+</Router>
