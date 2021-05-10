@@ -6,6 +6,7 @@ import About from './pages/About.svelte';
 import LoggedIn from './pages/LoggedIn.svelte';
 import PieceDisplay from'./pages/PieceDisplay.svelte';
 import AuthSignUp from './pages/AuthSignUp.svelte';
+import AuthSignIn from './components/AuthSignIn.svelte';
 
 let name = 'user';
 $: loggedIn = (name === "marianne")
@@ -58,9 +59,9 @@ function login() {
 
 <Router>
 	<h1>Hello {name}!</h1>
-	<input bind:value='{name}' />
+	<!-- <input bind:value='{name}' />
 		<button on:click='{() => onSubmit()}' >Log in</button>
-		<p>Not a user? <Link to="/sign-up">Sign up</Link></p>
+		<p>Not a user? <Link to="/sign-up">Sign up</Link></p> -->
 
 	<section>
 		<Route path="/"><Home /></Route>
