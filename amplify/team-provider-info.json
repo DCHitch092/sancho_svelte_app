@@ -14,6 +14,12 @@
     "categories": {
       "auth": {
         "sanchosvelteapp3527c53e": {}
+      },
+      "function": {
+        "sanchlify000lamdbda000pieceREST": {
+          "deploymentBucketName": "amplify-sanchosvelteapp-dev-193545-deployment",
+          "s3Key": "amplify-builds/sanchlify000lamdbda000pieceREST-6256374c5177454e4863-build.zip"
+        }
       }
     }
   }

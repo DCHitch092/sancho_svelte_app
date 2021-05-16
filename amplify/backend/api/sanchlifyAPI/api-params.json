@@ -1,0 +1,42 @@
+{
+  "paths": [
+    {
+      "name": "/piece/{pieceID}",
+      "lambdaFunction": "sanchlify000lamdbda000pieceREST",
+      "privacy": {
+        "private": true,
+        "auth": [
+          "/POST",
+          "/GET",
+          "/PUT",
+          "/PATCH",
+          "/DELETE"
+        ]
+      },
+      "policyResourceName": "/piece/*"
+    }
+  ],
+  "resourceName": "sanchlifyAPI",
+  "apiName": "sanchlifyAPI",
+  "functionArns": [
+    {
+      "lambdaFunction": "sanchlify000lamdbda000pieceREST"
+    }
+  ],
+  "privacy": {
+    "auth": 1,
+    "unauth": 0,
+    "authRoleName": "amplify-sanchosvelteapp-dev-193545-authRole",
+    "unAuthRoleName": "amplify-sanchosvelteapp-dev-193545-unauthRole"
+  },
+  "dependsOn": [
+    {
+      "category": "function",
+      "resourceName": "sanchlify000lamdbda000pieceREST",
+      "attributes": [
+        "Name",
+        "Arn"
+      ]
+    }
+  ]
+}

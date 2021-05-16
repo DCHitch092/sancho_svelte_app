@@ -3,6 +3,11 @@
 import Amplify, { Auth } from 'aws-amplify';
 import awsconfig from './aws-exports';
 Amplify.configure(awsconfig);
+import { onDestroy } from 'svelte';
+import { session } from './session.js';
+// import { isAuthenticated, user } from './store.js';
+console.log('isAuthenticated', session.isAuthenticated);
+console.log('user', session.user);
 
 import { Router, Link, Route, useNavigate, navigate } from "svelte-navigator";
 import Home from './pages/Home.svelte';
@@ -12,10 +17,12 @@ import PieceDisplay from'./pages/PieceDisplay.svelte';
 import AuthSignUp from './pages/AuthSignUp.svelte';
 import AuthSignIn from './components/AuthSignIn.svelte';
 
+// const user = writable({});
+
 let name = 'user';
 $: loggedIn = (name === "marianne")
 
-let userLoggedIn = false;
+// let userLoggedIn = false;
 
 function changeName(input){
 	name = input;
@@ -48,7 +55,13 @@ function login() {
 //         console.log('error signing up:', error);
 //     }
 // }
-
+// let user_display;
+//
+// const unsubscribe = user.subscribe(value => {
+// 		user_display = value;
+// 	});
+//
+// 	onDestroy(unsubscribe);
 
 </script>
 <Router primary={false}>
@@ -62,7 +75,6 @@ function login() {
 </Router>
 
 <Router>
-	<h1>Hello {name}!</h1>
 	<AuthSignIn />
 	<!-- <input bind:value='{name}' />
 		<button on:click='{() => onSubmit()}' >Log in</button>
@@ -75,5 +87,10 @@ function login() {
 		<Route path="/account" ><LoggedIn userID={name} /></Route>
 		<Route path="/account/:userID/piece/:pieceID" let:params ><PieceDisplay /></Route>
 	</section>
+
+	{#if $session.isAuthenticated}
+		{$session.isAuthenticated}	user is logged in
+		{$session.user}
+	{/if}
 
 </Router>
