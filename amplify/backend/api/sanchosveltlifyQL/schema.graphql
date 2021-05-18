@@ -1,0 +1,20 @@
+type Piece @model @auth(rules: [{ allow: owner }]){
+  id: ID!
+  title: String!
+  content: String
+  meta: Meta
+  status: [Status]
+}
+
+type Meta {
+  author: [String]
+  snippet: String
+  createdAt: AWSDateTime
+}
+
+type Status {
+  type: String!
+  updatedAt: AWSDateTime
+  url: String
+  where: String
+}

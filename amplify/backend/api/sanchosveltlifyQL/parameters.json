@@ -1,0 +1,11 @@
+{
+  "AppSyncApiName": "sanchosveltlifyQL",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authsanchosvelteapp3527c53e",
+      "Outputs.UserPoolId"
+    ]
+  }
+}
